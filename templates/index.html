@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Set background color to black */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #ffffff; /* White border for the header */
+            padding: 10px;
+            background-color: #ffffff; /* White background for the header */
+            color: #000000; /* Black text color */
+        }
+        form {
+            border: 1px solid #ffffff;
+            padding: 20px;
+            width: 400px;
+            background-color: #ffffff;
+            color: #000000; /* Black text color */
+            border-radius: 10px; /* Add rounded corners */
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea {
+            position:relative;
+            left:-15px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center; /* Center-align the text area */
+        }
+        input[type="submit"] {
+            background-color: #0074d9;
+            color: #ffffff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"] {
+            background-color: #ff4136; /* Red color for the clear button */
+            color: #ffffff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        strong {
+            display: block;
+            margin-top: 10px;
+        }
+        .emoji {
+            font-size: 24px;
+        }
+        /* Random text color for elements with class 'random-color' */
+        .random-color {
+            color: rgb(
+                Math.floor(Math.random() * 256),
+                Math.floor(Math.random() * 256),
+                Math.floor(Math.random() * 256)
+            );
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Classification</h1>
+    <form method="POST" action="/predict">
+        <label for="text">Enter Text:</label>
+        <textarea name="text" id="text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Predict">
+        <input type="button" value="Clear" onclick="clearForm()">
+        <br>
+        <strong>Prediction:</strong> <span class="emoji" id="prediction-emoji"></span> <span id="prediction-text"></span>
+        <br>
+        <strong>Input Text:</strong>
+        <br>
+        <div id="input-text" class="random-color"></div> <!-- Apply random text color -->
+    </form>
+
+    <script>
+        function clearForm() {
+            document.getElementById("text").value = "";
+            document.getElementById("prediction-emoji").innerText = "";
+            document.getElementById("prediction-text").innerText = "";
+            document.getElementById("input-text").innerText = "";
+        }
+
+        const predictionResult = "{{ prediction_result }}";
+        const predictionEmoji = document.getElementById("prediction-emoji");
+        const predictionText = document.getElementById("prediction-text");
+        const inputText = "{{ input_text }}";
+
+        if (predictionResult === "Disaster") {
+            predictionEmoji.innerText = "😞";
+            predictionText.innerText = "Disaster";
+        } else if (predictionResult === "Not a Disaster") {
+            predictionEmoji.innerText = "😄";
+            predictionText.innerText = "Not a Disaster";
+        }
+
+        document.getElementById("input-text").innerText = inputText;
+    </script>
+</body>
+</html>
