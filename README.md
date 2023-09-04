@@ -1,2 +1,0 @@
-# NaturalLanguageProcessing
-python ,Kaggle

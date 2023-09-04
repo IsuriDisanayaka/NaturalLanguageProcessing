@@ -100,16 +100,18 @@
         }
 
         const predictionResult = "{{ prediction_result }}";
+        console.log(predictionResult)
         const predictionEmoji = document.getElementById("prediction-emoji");
         const predictionText = document.getElementById("prediction-text");
         const inputText = "{{ input_text }}";
 
         if (predictionResult === "Disaster") {
             predictionEmoji.innerText = "😞";
+              predictionText.innerText = "Disaster";
         } else if (predictionResult === "Not a Disaster") {
+              predictionText.innerText = "Not a Disaster";
             predictionEmoji.innerText = "😄";
         }
-
 
         document.getElementById("input-text").innerText = inputText;
     </script>
