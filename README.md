@@ -36,13 +36,13 @@ Click the "Predict" button.
 
 The application will classify the text as either a "Disaster" or "Not a Disaster" and display the result.
 
-###Files in the Repository*
+###Files in the Repository
 app.py: The Flask web application.
 random_forest_model.pkl: The trained Random Forest model.
 tfidf_vectorizer.pkl: The TF-IDF vectorizer.
 templates/: Contains the HTML template files.
 
-#Contributing*
+#Contributing
 
 Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
